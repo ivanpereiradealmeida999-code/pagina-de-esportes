@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jogo da Velha Simples</title>
+    <style>
+        .cell {
+            width: 80px;
+            height: 80px;
+            border: 2px solid black;
+            display: inline-block;
+            text-align: center;
+            line-height: 80px;
+            font-size: 40px;
+            margin: 2px;
+            cursor: pointer;
+        }
+        .row {
+            height: 84px;
+        }
+        #status {
+            font-size: 20px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>desenvolvido por Ivan</h1>
+    <h1>todos os direitos reservados</h1>
+    <div id="status">Vez do: X</div>
+    
+    <div id="board">
+        <div class="row">
+            <div class="cell" id="0"></div>
+            <div class="cell" id="1"></div>
+            <div class="cell" id="2"></div>
+        </div>
+        <div class="row">
+            <div class="cell" id="3"></div>
+            <div class="cell" id="4"></div>
+            <div class="cell" id="5"></div>
+        </div>
+        <div class="row">
+            <div class="cell" id="6"></div>
+            <div class="cell" id="7"></div>
+            <div class="cell" id="8"></div>
+        </div>
+    </div>
+
+    <script>
+        // VARIÁVEIS SIMPLES
+        let vezDo = 'X';
+        let acabou = false;
+        
+        // PEGA TODAS AS CÉLULAS
+        let celulas = document.querySelectorAll('.cell');
+        
+        // PARA CADA CÉLULA, ADICIONA CLIQUE
+        celulas.forEach(celula => {
+            celula.addEventListener('click', function() {
+                // Só faz se não acabou e célula vazia
+                if (!acabou && this.textContent === '') {
+                    // Coloca X ou O
+                    this.textContent = vezDo;
+                    
+                    // Muda a vez
+                    if (vezDo === 'X') {
+                        vezDo = 'O';
+                    } else {
+                        vezDo = 'X';
+                    }
+                    
+                    // Atualiza status
+                    document.getElementById('status').textContent = 'Vez do: ' + vezDo;
+                }
+            });
+        });
+        
+        console.log('Jogo pronto! Clique nas células.');
+    </script>
+</body>
+</html>
